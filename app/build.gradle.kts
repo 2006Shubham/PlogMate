@@ -64,6 +64,7 @@ dependencies {
     implementation("com.google.firebase:firebase-database:20.3.1")
     implementation("com.google.firebase:firebase-storage:20.3.0")
     implementation("com.github.bumptech.glide:glide:4.12.0")
+
     annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
 
     // Testing dependencies
@@ -97,4 +98,20 @@ dependencies {
     implementation("com.google.firebase:firebase-storage:20.3.0")
     implementation("com.github.bumptech.glide:glide:4.12.0")
     annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
+
+
+
+    // Google Maps SDK for Android
+    implementation("com.google.android.gms:play-services-maps:18.0.0")
+
+    // Google Play Services Location (if you are using location-related services)
+    implementation("com.google.android.gms:play-services-location:18.0.0")
+
+    // Google Places API for location selection (optional)
+    implementation("com.google.android.libraries.places:places:3.0.0")
+
+    implementation("com.google.android.libraries.places:places:2.7.0")
+
+
+
 }

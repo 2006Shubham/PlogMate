@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/main"
@@ -19,7 +18,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add Event"
+            android:text="Edit Event"
             android:textSize="24sp"
             android:textStyle="bold"
             android:textColor="#4A4A4A"
@@ -46,34 +45,6 @@
                 android:padding="16dp"
                 android:orientation="vertical">
 
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Select Image:"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:layout_marginTop="16dp"
-                    android:textColor="#4A4A4A" />
-
-                <ImageView
-                    android:id="@+id/ivEventImage"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:layout_marginTop="8dp"
-                    android:scaleType="centerCrop"
-                    android:background="#D3D3D3"
-                    android:contentDescription="Event Image"/>
-
-                <Button
-                    android:id="@+id/btnSelectImage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Choose from Gallery"
-                    android:layout_marginTop="10dp"
-                    android:layout_gravity="center" />
-
-
                 <!-- Event Name -->
                 <EditText
                     android:id="@+id/etAddEventname"
@@ -83,7 +54,9 @@
                     android:textSize="16sp"
                     android:padding="12dp"
                     android:textColorHint="#4A4A4A"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:focusable="false"
+                    android:clickable="false"/>
 
                 <!-- Event Date -->
                 <EditText
@@ -95,7 +68,9 @@
                     android:padding="12dp"
                     android:textColorHint="#4A4A4A"
                     android:textColor="@color/black"
-                    android:inputType="date"/>
+                    android:inputType="date"
+                    android:focusable="false"
+                    android:clickable="false"/>
 
                 <!-- Event Address -->
                 <EditText
@@ -106,7 +81,9 @@
                     android:textSize="16sp"
                     android:padding="12dp"
                     android:textColorHint="#4A4A4A"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:focusable="false"
+                    android:clickable="false"/>
 
                 <!-- Event Time -->
                 <EditText
@@ -117,7 +94,9 @@
                     android:textSize="16sp"
                     android:padding="12dp"
                     android:textColorHint="#4A4A4A"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:focusable="false"
+                    android:clickable="false"/>
 
                 <!-- Map Link -->
                 <EditText
@@ -128,7 +107,10 @@
                     android:textSize="16sp"
                     android:padding="12dp"
                     android:textColorHint="#4A4A4A"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:focusable="false"
+                    android:clickable="false"/>
+
                 <!-- Coordinator Name -->
                 <EditText
                     android:id="@+id/etCordinatiorName"
@@ -138,7 +120,9 @@
                     android:textSize="16sp"
                     android:padding="12dp"
                     android:textColorHint="#4A4A4A"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:focusable="false"
+                    android:clickable="false"/>
 
                 <!-- Mobile Number -->
                 <EditText
@@ -150,7 +134,9 @@
                     android:padding="12dp"
                     android:textColorHint="#4A4A4A"
                     android:textColor="@color/black"
-                    android:inputType="phone"/>
+                    android:inputType="phone"
+                    android:focusable="false"
+                    android:clickable="false"/>
 
                 <!-- Event Description -->
                 <EditText
@@ -161,7 +147,9 @@
                     android:textSize="16sp"
                     android:padding="12dp"
                     android:textColorHint="#4A4A4A"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:focusable="false"
+                    android:clickable="false"/>
 
                 <!-- Event Type -->
                 <TextView
@@ -170,6 +158,7 @@
                     android:text="Select Event Type:"
                     android:textSize="16sp"
                     android:textStyle="bold"
+                    android:id="@+id/eventType"
                     android:textColor="#4A4A4A"
                     android:layout_marginTop="16dp" />
 
@@ -183,36 +172,45 @@
                         android:id="@+id/radioPlogging"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="PLogging" />
+                        android:text="PLogging"
+                        android:enabled="false" />
 
                     <RadioButton
                         android:id="@+id/radioLalBindi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Lal Bindi" />
+                        android:text="Lal Bindi"
+                        android:enabled="false" />
 
                     <RadioButton
                         android:id="@+id/radioSocialShelf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Social Shelf" />
+                        android:text="Social Shelf"
+                        android:enabled="false" />
                 </RadioGroup>
 
-
-                <Button
-                    android:layout_gravity="center"
-                    android:id="@+id/saveButton"
-                    android:layout_width="wrap_content"
-                    android:text="Save"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                </Button>
+                    <Button
+                        android:layout_gravity="center"
+                        android:id="@+id/editButton"
+                        android:layout_width="wrap_content"
+                        android:text="Edit"
+                        android:layout_height="wrap_content" />
 
+                    <Button
+                        android:layout_gravity="center"
+                        android:id="@+id/saveButton"
+                        android:layout_width="wrap_content"
+                        android:text="Save"
+                        android:layout_marginLeft="20dp"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
 
             </LinearLayout>
-
         </androidx.cardview.widget.CardView>
-
-
     </LinearLayout>
 </ScrollView>

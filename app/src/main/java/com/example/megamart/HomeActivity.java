@@ -1,16 +1,12 @@
 package com.example.megamart;
 
 import android.annotation.SuppressLint;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -22,6 +18,9 @@ import androidx.appcompat.widget.Toolbar; // Import Toolbar
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.megamart.plog.LalbindiFragment;
+import com.example.megamart.plog.PloggingFragment;
+import com.example.megamart.plog.SocialShelfFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
@@ -49,12 +48,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationBarView
 
         //drawerLayout = findViewById(R.id.draw)
         //imp
-
-
-
-
-
-
 
 
 
@@ -115,7 +108,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationBarView
         toggle.syncState(); // Show Hamburger Icon
         getSupportFragmentManager().beginTransaction().replace(R.id.homeFrameLayout, ploggingFragment).commit();
         bottomNavigationView = findViewById(R.id.homeBottomNav);
-        bottomNavigationView = findViewById(R.id.homeBottomNav);
         bottomNavigationView.setSelectedItemId(R.id.menuHomeNavPlogging);
         bottomNavigationView.setOnItemSelectedListener(this);
        // getSupportFragmentManager().beginTransaction().replace(R.id.homeFramelayout, ploggingFragment).commit();
@@ -131,21 +123,22 @@ public class HomeActivity extends AppCompatActivity implements NavigationBarView
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
-        if (itemId == R.id.menu_item_settings) {
-            Toast.makeText(HomeActivity.this, "Settings", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(HomeActivity.this, SettingActivity.class));
-            return true;
-        }
-        else if (itemId == R.id.menu_item_aboutus) {
+
+        if (itemId == R.id.menu_item_aboutus){
             Toast.makeText(HomeActivity.this, "About us", Toast.LENGTH_SHORT).show(); // Corrected string
             startActivity(new Intent(HomeActivity.this, AboutUsActivity.class));
             return true;
-        } else if (itemId == R.id.menu_item_help) {
+        }
+       else if (itemId == R.id.menu_item_settings){
+            Toast.makeText(HomeActivity.this, "Settings", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(HomeActivity.this, SettingActivity.class));
+            return true;
+        }else if (itemId == R.id.menu_item_help){
             Toast.makeText(HomeActivity.this, "Help", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(HomeActivity.this, HelpActivity.class));
             return true;
         }
-        else if (itemId == R.id.menu_item_logout) {
+        else if (itemId == R.id.menu_item_logout){
             new AlertDialog.Builder(this) // Use 'this' instead of 'HomeActivity.this' for context
                     .setTitle("PlogMate") // Consistent title
                     .setMessage("Are you sure you want to log out?") // Clearer message

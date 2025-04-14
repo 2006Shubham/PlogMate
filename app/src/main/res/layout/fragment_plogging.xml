@@ -1,41 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
-    tools:context=".PloggingFragment">
+    tools:context=".plog.PloggingFragment">
 
-    <ImageView
-        android:id="@+id/ploggingdrive"
-        android:layout_width="350dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center|center_horizontal"
-        android:layout_marginTop="80dp"
-        android:src="@drawable/drive" />
-
-    <ImageView
-        android:id="@+id/ploggingpost"
-        android:layout_width="350dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center|center_horizontal"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/drive" />
-
-    <TextView
-        android:id="@+id/pfmaplink"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/plogRecycler"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Map Link"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="#4A4A4A"
-        android:gravity="center"
-        android:padding="12dp"
-        android:background="#FFFFFF"
-        android:elevation="4dp"
-        android:layout_marginTop="50dp"/>
+        android:layout_height="match_parent" />
 </LinearLayout>

@@ -49,6 +49,7 @@ public class OrganizeEventActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(intent);
+                finish();
             }
         });
 

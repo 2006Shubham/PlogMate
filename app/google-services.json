@@ -1,26 +1,66 @@
 {
   "project_info": {
-    "project_number": "157561882210",
-    "project_id": "ploggmate-2829b",
-    "storage_bucket": "ploggmate-2829b.firebasestorage.app"
+    "project_number": "830172540487",
+    "firebase_url": "https://plogmate-default-rtdb.firebaseio.com",
+    "project_id": "plogmate",
+    "storage_bucket": "plogmate.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:157561882210:android:06082c08eb68a50edc733b",
+        "mobilesdk_app_id": "1:830172540487:android:14eebd66420221df9b0b62",
         "android_client_info": {
           "package_name": "com.example.megamart"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "830172540487-siittlu4nqj4kcj2l791628gq7tadfrm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyD2oExQY2D9JMY0goX1SMSVM2fpwbw0skg"
+          "current_key": "AIzaSyDnumBxJsytRdrmZCf7TwT9LAYBB7lUGRk"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "830172540487-siittlu4nqj4kcj2l791628gq7tadfrm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:830172540487:android:f8be2644704ab6039b0b62",
+        "android_client_info": {
+          "package_name": "com.socialmedia.plogmate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "830172540487-siittlu4nqj4kcj2l791628gq7tadfrm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnumBxJsytRdrmZCf7TwT9LAYBB7lUGRk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "830172540487-siittlu4nqj4kcj2l791628gq7tadfrm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

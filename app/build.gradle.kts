@@ -113,5 +113,11 @@ dependencies {
     implementation("com.google.android.libraries.places:places:2.7.0")
 
 
+        implementation("com.google.firebase:firebase-messaging:23.4.1")// or latest version
 
+
+    implementation(platform("com.google.firebase:firebase-bom:32.7.0")) // check for latest
+    implementation("com.google.firebase:firebase-messaging")
+
+    implementation("com.google.firebase:firebase-analytics")
 }

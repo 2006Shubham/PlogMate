@@ -127,6 +127,7 @@ public class AddEventActivity extends AppCompatActivity {
                         "&event_image=" + Uri.encode(encodedImage);
 
                 // URL to your PHP backend
+
                 URL url = new URL("http://192.168.150.81:7070/event_api/insert_event.php");
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");

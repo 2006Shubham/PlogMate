@@ -19,6 +19,27 @@
         android:theme="@style/Base.Theme.MegaMart"
         tools:targetApi="31">
         <activity
+            android:name=".managefunds.expense.TotalExpenseActivity"
+            android:exported="false" />
+        <activity
+            android:name=".managefunds.expense.SelectEventActivity"
+            android:exported="false" />
+        <activity
+            android:name=".managefunds.ExpenseActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".managefunds.donation.DonateActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".managefunds.collab.CollabActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".managefunds.ManageFundsActivity"
+            android:exported="false" />
+        <activity
             android:name=".plog.EventDetailActivity"
             android:exported="false" />
         <activity

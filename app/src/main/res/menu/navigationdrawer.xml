@@ -2,10 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item
-        android:title="Administration"
-        android:id="@+id/menuNavAdministration"
-        android:icon="@drawable/icon_admin"/>
+<!--    <item-->
+<!--        android:title="Administration"-->
+<!--        android:id="@+id/menuNavAdministration"-->
+<!--        android:icon="@drawable/icon_admin"/>-->
 
 
     <item
@@ -21,11 +21,11 @@
         />
 
 
-    <item
-        android:title="View Insights"
-        android:id="@+id/menuNavVI"
+<!--    <item-->
+<!--        android:title="View Insights"-->
+<!--        android:id="@+id/menuNavVI"-->
 
-        android:icon="@drawable/icon_insights"/>
+<!--        android:icon="@drawable/icon_insights"/>-->
     <item
         android:title=" Manage Funds"
         android:id="@+id/menuNavMF"

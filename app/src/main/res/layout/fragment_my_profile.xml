@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="100dp"
-    tools:context=".MyProfileFragment">
+    android:layout_marginTop="20dp"
+    tools:context=".myprofile.MyProfileFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -123,144 +123,12 @@
                 android:layout_height="1dp"
                 android:background="@color/grey" />
 
-            <!-- Posts Grid -->
-            <GridLayout
-                android:id="@+id/posts_grid"
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:columnCount="3"
-                android:rowCount="4">
-
-                <!-- Sample Post Image -->
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="120dp"
-                    android:layout_rowWeight="1"
-                    android:layout_columnWeight="1"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_launcher_background" />
-
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="120dp"
-                    android:layout_rowWeight="1"
-                    android:layout_columnWeight="1"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_launcher_foreground" />
-
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="120dp"
-                    android:layout_rowWeight="1"
-                    android:layout_columnWeight="1"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_launcher_background" />
-
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="120dp"
-                    android:layout_rowWeight="1"
-                    android:layout_columnWeight="1"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_launcher_foreground" />
-
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="120dp"
-                    android:layout_rowWeight="1"
-                    android:layout_columnWeight="1"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_launcher_background" />
-
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="120dp"
-                    android:layout_rowWeight="1"
-                    android:layout_columnWeight="1"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_launcher_foreground" />
-
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="120dp"
-                    android:layout_rowWeight="1"
-                    android:layout_columnWeight="1"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_launcher_background" />
-
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="120dp"
-                    android:layout_rowWeight="1"
-                    android:layout_columnWeight="1"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_launcher_foreground" />
-
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="120dp"
-                    android:layout_rowWeight="1"
-                    android:layout_columnWeight="1"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_launcher_background" />
-
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="120dp"
-                    android:layout_rowWeight="1"
-                    android:layout_columnWeight="1"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_launcher_foreground" />
-
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="120dp"
-                    android:layout_rowWeight="1"
-                    android:layout_columnWeight="1"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_launcher_background" />
-
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="120dp"
-                    android:layout_rowWeight="1"
-                    android:layout_columnWeight="1"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_launcher_foreground" />
-
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="120dp"
-                    android:layout_rowWeight="1"
-                    android:layout_columnWeight="1"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_launcher_background" />
-
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="120dp"
-                    android:layout_rowWeight="1"
-                    android:layout_columnWeight="1"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_launcher_foreground" />
-
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="120dp"
-                    android:layout_rowWeight="1"
-                    android:layout_columnWeight="1"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_launcher_background" />
-
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="120dp"
-                    android:layout_rowWeight="1"
-                    android:layout_columnWeight="1"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_launcher_foreground" />
-
-            </GridLayout>
+                android:padding="5dp"
+                android:layout_height="match_parent"
+                android:id="@+id/recyclerUserPosts"/>
 
         </LinearLayout>
     </ScrollView>

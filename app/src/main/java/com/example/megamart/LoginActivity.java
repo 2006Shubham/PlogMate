@@ -1,156 +1,127 @@
 package com.example.megamart;
 
-import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.View;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.megamart.common.NetworkChangeListener;
 import com.example.megamart.databinding.ActivityLoginBinding;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.JsonHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import cz.msebera.android.httpclient.Header;
-
+import java.util.HashMap;
+import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
+
     ActivityLoginBinding binding;
-
-    ImageView ivLoginlogo;
-    TextView etLoginEmail,etPassword, tvREgister;
-    Button btnLogin;
-    CheckBox cbShowPass;
-    BottomNavigationView bottomNavigationView;
-    NetworkChangeListener networkChangeListener=new NetworkChangeListener();
-
+    NetworkChangeListener networkChangeListener = new NetworkChangeListener();
     ProgressDialog progressDialog;
 
     @Override
-    protected void onStart(){
+    protected void onStart() {
         super.onStart();
+        // Check if already logged in
+        SharedPreferences prefs = getSharedPreferences("loginPrefs", MODE_PRIVATE);
+        boolean isLoggedIn = prefs.getBoolean("isLoggedIn", false);
 
-        IntentFilter intentFilter=new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-        registerReceiver(networkChangeListener,intentFilter);
+        if (isLoggedIn) {
+            startActivity(new Intent(this, HomeActivity.class));
+            finish();
+        }
+
+        IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(networkChangeListener, intentFilter);
     }
 
     @Override
-    protected void onStop(){
+    protected void onStop() {
         super.onStop();
         unregisterReceiver(networkChangeListener);
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
         super.onCreate(savedInstanceState);
-
-        EdgeToEdge.enable(this);
-        binding=ActivityLoginBinding.inflate(getLayoutInflater());
+        binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-
-
-        etPassword=findViewById(R.id.etLoginPassword);
-        etLoginEmail=findViewById(R.id.etLoginEmail);
-        binding.tvRegistration.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i=new Intent(LoginActivity.this,RegistrationActivity.class);
-                startActivity(i);
-            }
+        binding.tvRegistration.setOnClickListener(v -> {
+            startActivity(new Intent(LoginActivity.this, RegistrationActivity.class));
         });
 
-        /*binding.btnLoginlogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(etLoginEmail.getText().toString().isEmpty())
-                {
-                    etLoginEmail.setError("Please enter username ");
-                }
-                else if (etPassword.getText().toString().isEmpty()) {
-                    etPassword.setError("Please enter password ");
-                } else if (etLoginEmail.getText().toString().length()<8) {
-                    etLoginEmail.setError("Username must be greater than 8 characters");
+        binding.btnLoginlogin.setOnClickListener(v -> {
+            String username = binding.etLoginEmail.getText().toString().trim();
+            String password = binding.etLoginPassword.getText().toString().trim();
 
-                }
-                else {
-                    String email=binding.etLoginEmail.getText().toString().trim();
-                    String pass=binding.etLoginPassword.getText().toString().trim();
-                    progressDialog=new ProgressDialog(LoginActivity.this);
-                    progressDialog.setTitle("Loging");
-                    progressDialog.setMessage("Please wait");
-                    progressDialog.show();
-                    FirebaseAuth.getInstance().signInWithEmailAndPassword(email,pass)
-                            .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                                @Override
-                                public void onSuccess(AuthResult authResult) {
-                                    progressDialog.cancel();
-                                    Intent i=new Intent(LoginActivity.this,HomeActivity.class);
-                                    startActivity(i);
-                                    FirebaseFirestore.getInstance().collection("Users")
-                                            .document(FirebaseAuth.getInstance()
-                                                    .getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                                @Override
-                                                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                                    UserModel userModel=documentSnapshot.toObject(UserModel.class);
-                                                    new MySharedPreferences(LoginActivity.this).setMyDeta(userModel.getUsrPhNumber());
-                                                }
-                                            });
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(LoginActivity.this,"Invalid Credentials",Toast.LENGTH_SHORT).show();
-                                    progressDialog.cancel();
-                                }
-                            });
-                }
-
+            if (username.isEmpty()) {
+                binding.etLoginEmail.setError("Please enter username");
+                return;
             }
-        });*/
-
-        binding.btnLoginlogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i=new Intent(LoginActivity.this, HomeActivity.class);
-                startActivity(i);
+            if (password.isEmpty()) {
+                binding.etLoginPassword.setError("Please enter password");
+                return;
             }
+
+            progressDialog = new ProgressDialog(LoginActivity.this);
+            progressDialog.setMessage("Logging in...");
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+
+            String url = "http://192.168.150.81:7070/event_api/login.php";
+
+            StringRequest request = new StringRequest(Request.Method.POST, url,
+                    response -> {
+                        progressDialog.dismiss();
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String status = jsonObject.getString("status");
+
+                            if (status.equals("success")) {
+                                // Save login state
+                                SharedPreferences.Editor editor = getSharedPreferences("loginPrefs", MODE_PRIVATE).edit();
+                                editor.putBoolean("isLoggedIn", true);
+                                editor.putString("username", username); // if needed later
+                                editor.apply();
+
+                                Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(this, HomeActivity.class));
+                                finish();
+                            } else {
+                                Toast.makeText(this, "Invalid username or password", Toast.LENGTH_SHORT).show();
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(this, "Error parsing server response", Toast.LENGTH_SHORT).show();
+                        }
+                    },
+                    error -> {
+                        progressDialog.dismiss();
+                        Toast.makeText(this, "Connection error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }) {
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<>();
+                    params.put("username", username);
+                    params.put("password", password);
+                    return params;
+                }
+            };
+
+            RequestQueue queue = Volley.newRequestQueue(this);
+            queue.add(request);
         });
-
-
-
-
-
-
-
-
-
-
-}}
+    }
+}

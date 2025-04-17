@@ -46,7 +46,8 @@ public class ExploreFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerPosts);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        adapter = new PostAdapter(postList);
+        // In ExploreFragment.java
+        adapter = new PostAdapter(postList, requireContext());
         recyclerView.setAdapter(adapter);
 
         writepost = view.findViewById(R.id.writepost);

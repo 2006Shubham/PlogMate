@@ -26,7 +26,6 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.*;
 
-
 public class MyProfileFragment extends Fragment {
 
     private RecyclerView recyclerView;
@@ -35,10 +34,10 @@ public class MyProfileFragment extends Fragment {
     private String username;
 
     TextView postsCountTextView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_my_profile, container, false);
 
         // Get username from SharedPreferences
@@ -50,9 +49,10 @@ public class MyProfileFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.recyclerUserPosts);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new PostAdapter(postList);
+        adapter = new PostAdapter(postList,getContext());
         recyclerView.setAdapter(adapter);
         postsCountTextView = view.findViewById(R.id.posts_count);
+
         new FetchUserPostsTask().execute();
 
         return view;
@@ -62,7 +62,8 @@ public class MyProfileFragment extends Fragment {
         @Override
         protected String doInBackground(Void... voids) {
             try {
-                String urlString = "http://192.168.150.81:7070/event_api/get_user_posts.php?username=" + URLEncoder.encode(username, "UTF-8");
+                String urlString = "http://192.168.150.81:7070/event_api/get_user_posts.php?username=" +
+                        URLEncoder.encode(username, "UTF-8");
                 URL url = new URL(urlString);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("GET");
@@ -81,7 +82,6 @@ public class MyProfileFragment extends Fragment {
             }
         }
 
-
         @Override
         protected void onPostExecute(String result) {
             try {
@@ -91,8 +91,7 @@ public class MyProfileFragment extends Fragment {
                 postList.addAll(gson.fromJson(result, listType));
                 adapter.notifyDataSetChanged();
 
-                // ✅ Set post count
-
+                // Update post count
                 if (postsCountTextView != null) {
                     postsCountTextView.setText(postList.size() + " Posts");
                 }
@@ -100,6 +99,5 @@ public class MyProfileFragment extends Fragment {
                 Toast.makeText(getContext(), "Error loading user posts", Toast.LENGTH_SHORT).show();
             }
         }
-
     }
 }
